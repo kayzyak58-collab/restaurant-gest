@@ -1,0 +1,76 @@
+<h2>Date : <input type="date" [(ngModel)]="dateChoisie" /></h2>
+
+<hr />
+
+<h2>Enregistrer une vente</h2>
+<div class="formulaire">
+  <label>Plat</label>
+  <select [(ngModel)]="plat">
+    <option>Riz sauce viande</option>
+    <option>Riz sauce poisson</option>
+    <option>Riz sauce simple</option>
+  </select>
+  <label>Quantité</label>
+  <input type="number" [(ngModel)]="quantite" min="1" />
+  <label>Prix unitaire (FCFA)</label>
+  <input type="number" [(ngModel)]="prix" min="0" />
+  <button (click)="ajouterVente()">Ajouter la vente</button>
+</div>
+
+<h3>Ventes du jour</h3>
+<ul>
+  @for (v of ventes; track v) {
+    <li>
+      {{ v.plat }} x {{ v.quantite }} = {{ v.quantite * v.prix }} FCFA
+      <button (click)="supprimerVente(v)">Supprimer</button>
+    </li>
+  }
+</ul>
+<h3>Total des ventes : {{ totalVentes }} FCFA</h3>
+
+<hr />
+
+<h2>Enregistrer un achat</h2>
+<div class="formulaire">
+  <label>Article</label>
+  <select [(ngModel)]="article">
+    <option>Riz</option>
+    <option>Ingrédients sauce</option>
+    <option>Poisson</option>
+    <option>Viande</option>
+    <option>Gaz</option>
+    <option>Autre</option>
+  </select>
+  <label>Montant payé (FCFA)</label>
+  <input type="number" [(ngModel)]="montant" min="0" />
+  <button (click)="ajouterAchat()">Ajouter l'achat</button>
+</div>
+
+<h3>Achats du jour</h3>
+<ul>
+  @for (a of achats; track a) {
+    <li>
+      {{ a.article }} = {{ a.montant }} FCFA
+      <button (click)="supprimerAchat(a)">Supprimer</button>
+    </li>
+  }
+</ul>
+<h3>Total des achats : {{ totalAchats }} FCFA</h3>
+
+<hr />
+
+<h2>Bénéfice du jour : {{ benefice }} FCFA</h2>
+
+<hr />
+
+<h2>Bilan de la semaine (7 derniers jours)</h2>
+<p>Ventes : {{ ventesSemaine }} FCFA</p>
+<p>Achats : {{ achatsSemaine }} FCFA</p>
+<h3>Bénéfice de la semaine : {{ beneficeSemaine }} FCFA</h3>
+
+<hr />
+
+<h2>Bilan du mois</h2>
+<p>Ventes : {{ ventesMois }} FCFA</p>
+<p>Achats : {{ achatsMois }} FCFA</p>
+<h3>Bénéfice du mois : {{ beneficeMois }} FCFA</h3>
